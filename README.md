@@ -176,6 +176,18 @@ Configuré un *post-hook* en dbt\_project.yml:
 **Impacto:**\
 Cada dbt run genera automáticamente los CSV finales en exports/, listos para Excel o Power BI, sin intervención manual.
 
+**7.3. Generación de Documentación "Offline" (Single-Page Application)**
+
+La funcionalidad nativa dbt docs generate produce múltiples archivos JSON que los navegadores modernos bloquean por seguridad (CORS) si se intentan abrir localmente sin un servidor web.
+
+Solución Técnica Implementada: Desarrollé un script de automatización en Python (crear_static.py) ejecutado dentro del contenedor que utiliza Expresiones Regulares (Regex) para:
+
+Analizar el código fuente minificado del index.html generado por DBT.
+
+Inyectar dinámicamente los contenidos de manifest.json y catalog.json dentro de las variables JavaScript del HTML.
+
+Resultado: Un único entregable portátil (index_estatico.html) que permite visualizar el linaje de datos y la documentación completa sin necesidad de instalar servidores web ni dependencias en el equipo del cliente o profesor.
+
 -----
 **8. Conclusión del Proyecto**
 
